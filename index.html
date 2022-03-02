@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post Method and Get Method Example</title>
+</head>
+
+<body>
+    <h4>Enter Title:</h4>
+    <input type="text" placeholder="Enter Title" id="name1" />
+    <h4>Enter Description:</h4>
+    <input type="email" placeholder="Enter Description" id="salary1" />
+    <h4>Enter Image Code:</h4>
+    <input type="text" placeholder="Enter your Image" id="age1" />
+    <h4>Enter Price:</h4>
+    <input type="number" placeholder="Enter price" id="id1" />
+    <h4>Enter Category:</h4>
+    <input type="text" placeholder="Enter Category" id="st1" />
+
+    <button type="submit" id="submitpostBtn">Post Method Trial</button>
+
+    <script type="text/javascript">
+        document.getElementById("submitpostBtn").addEventListener("click", abc);
+        function abc() {
+            var n1 = document.getElementById("name1").value;
+            var s1 = document.getElementById("salary1").value;
+            var a1 = document.getElementById("age1").value;
+            var id1 = document.getElementById("id1").value;
+            var st12 = document.getElementById("st1").value;
+
+            let url = "https://fakestoreapi.com/products";
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json;charset=UTF-8",
+                },
+                body: JSON.stringify({
+                    title: n1,
+                    description: s1,
+                    image: a1,
+                    price: id1,
+                    category: st12,
+                }),
+            })
+                .then((res) => {
+                    if (!res.ok) {
+                        throw Error(res.statusText);
+                    }
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    </script>
+</body>
+
+</html>
